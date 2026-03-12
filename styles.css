@@ -287,8 +287,8 @@ h3 { font-size: clamp(1.5rem, 3vw, 3rem); font-family: var(--font-body); font-we
 /* The Twin Wrapper simulates the full #hero section coordinate system */
 .hero-twin-wrapper {
     position: absolute;
-    top: -15vh; /* Counteract the center-alignment (50vh - 35vh) */
-    left: -20vw; /* Counteract the center-alignment (50vw - 30vw) */
+    top: -10vh; /* Counteract the center-alignment (50vh - 40vh) */
+    left: -15vw; /* Counteract the center-alignment (50vw - 35vw) */
     width: 100vw;
     height: 100vh;
     pointer-events: none;
