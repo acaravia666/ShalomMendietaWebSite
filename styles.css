@@ -300,10 +300,6 @@ h3 { font-size: clamp(1.5rem, 3vw, 3rem); font-family: var(--font-body); font-we
 
 .hero-title-reveal {
     color: var(--accent-primary) !important;
-    position: absolute; /* Keep original positioning properties */
-    bottom: calc(var(--content-padding) - 15vh);
-    left: calc(var(--content-padding) - 20vw);
-    width: 100vw;
     pointer-events: none;
     z-index: 20;
 }
