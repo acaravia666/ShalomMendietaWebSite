@@ -276,7 +276,7 @@ h3 { font-size: clamp(1.5rem, 3vw, 3rem); font-family: var(--font-body); font-we
 }
 
 .hero-image-placeholder {
-    width: 100%; 
+    width: 100%;
     height: 100%;
     background-image: url('WhatsApp Image 2026-03-12 at 1.53.50 PM.jpeg');
     background-size: cover;
@@ -289,9 +289,23 @@ h3 { font-size: clamp(1.5rem, 3vw, 3rem); font-family: var(--font-body); font-we
     bottom: calc(var(--content-padding) - 15vh);
     left: calc(var(--content-padding) - 20vw);
     width: 100vw;
-    color: var(--accent-primary);
+    color: var(--accent-primary) !important;
     pointer-events: none;
     z-index: 20;
+}
+
+.hero-title-reveal span {
+    color: var(--accent-primary) !important;
+}
+
+/* Match the exact position of the original content */
+.hero-content {
+    align-self: end;
+    position: relative;
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
 
 .loaded .hero-background {
