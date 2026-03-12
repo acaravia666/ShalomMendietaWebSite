@@ -2,9 +2,9 @@
    CSS Variables & Base Reset (Premium Warm Gallery Style)
    ========================================================================== */
 :root {
-    /* Color Palette (Warm & Earthy) */
-    --bg-color: #f2efe9;           /* Sand beige / Clay */
-    --surface-color: #e6e2d8;      /* Slightly darker beige */
+    /* Color Palette (Refined Museum Warmth) */
+    --bg-color: #f0e9df;           /* Deeper Creamy Sand */
+    --surface-color: #e8e1d3;      /* Warmer Clay */
     --surface-dark: #2c2a28;       /* Very dark brown/grey */
     --text-primary: #2c2a28;       /* Very dark brown/grey */
     --text-secondary: #5c5751;     /* Medium brown/grey */
@@ -60,6 +60,11 @@ body {
     font-weight: 300;
     line-height: 1.6;
     overflow-x: hidden;
+}
+
+/* Ensure all core layout elements have explicit backgrounds */
+header, main, section, footer {
+    background-color: var(--bg-color);
 }
 
 body.loading {
