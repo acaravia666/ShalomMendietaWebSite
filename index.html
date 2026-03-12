@@ -33,6 +33,8 @@
         <section id="hero" class="hero-section">
             <div class="hero-background">
                 <div class="hero-image-placeholder"></div>
+                <!-- Spline 3D Canvas -->
+                <canvas id="canvas3d"></canvas>
                 <!-- Dual Layer for Color Reveal (Twin Wrapper) -->
                 <div class="hero-twin-wrapper" aria-hidden="true">
                     <div class="hero-content container">
@@ -249,5 +251,11 @@
     </footer>
 
     <script src="main.js"></script>
+    <script type="module">
+        import { Application } from 'https://unpkg.com/@splinetool/runtime@1.9.15/build/runtime.js';
+        const canvas = document.getElementById('canvas3d');
+        const app = new Application(canvas);
+        app.load('https://prod.spline.design/jrMCKg2KrMpUydr0/scene.splinecode');
+    </script>
 </body>
 </html>
