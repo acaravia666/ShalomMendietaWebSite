@@ -337,8 +337,14 @@ h3 { font-size: clamp(1.5rem, 3vw, 3rem); font-family: var(--font-body); font-we
     overflow: hidden;
 }
 
+.hero-title .char {
+    display: inline-block;
+    transition: transform 0.1s ease-out; /* Smooth small adjustments */
+    will-change: transform;
+}
+
 .hero-title span {
-    display: block;
+    display: inline-block;
     transform: translateY(110%);
     opacity: 0;
 }

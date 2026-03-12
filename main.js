@@ -57,6 +57,24 @@ document.addEventListener('DOMContentLoaded', () => {
                     // Subtle hero parallax
                     if (heroBg && scrollY < window.innerHeight) {
                         heroBg.style.transform = `translateY(${scrollY * 0.25}px) scale(1.05)`;
+                        
+                        // 5. Letter Scramble Logic
+                        const progress = Math.min(scrollY / (window.innerHeight * 0.8), 1);
+                        const allChars = document.querySelectorAll('.hero-title .char');
+                        
+                        allChars.forEach((char, index) => {
+                            // Split into index per layer (there are 14 characters per layer)
+                            const charIndex = index % 14; 
+                            const intensity = progress * 100; // Max 100px move
+                            
+                            // Deterministic "random" logic based on index
+                            const x = Math.sin(charIndex * 0.5) * intensity;
+                            const y = Math.cos(charIndex * 0.8) * (intensity * 0.5);
+                            const rotate = Math.sin(charIndex * 1.5) * (progress * 45); // Max 45deg
+                            
+                            char.style.transform = `translate(${x}px, ${y}px) rotate(${rotate}deg)`;
+                            char.style.opacity = 1 - (progress * 0.5); // Slight fade
+                        });
                     }
 
                     // Gallery Background Parallax (Moves slower than scroll)
