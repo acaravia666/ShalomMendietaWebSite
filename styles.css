@@ -2,9 +2,9 @@
    CSS Variables & Base Reset (Premium Warm Gallery Style)
    ========================================================================== */
 :root {
-    /* Color Palette (Refined Museum Warmth) */
-    --bg-color: #f0e9df;           /* Deeper Creamy Sand */
-    --surface-color: #e8e1d3;      /* Warmer Clay */
+    /* Color Palette (Warm & Earthy) */
+    --bg-color: #f2efe9;           /* Sand beige / Clay */
+    --surface-color: #e6e2d8;      /* Slightly darker beige */
     --surface-dark: #2c2a28;       /* Very dark brown/grey */
     --text-primary: #2c2a28;       /* Very dark brown/grey */
     --text-secondary: #5c5751;     /* Medium brown/grey */
@@ -256,11 +256,13 @@ h3 { font-size: clamp(1.5rem, 3vw, 3rem); font-family: var(--font-body); font-we
 .hero-section {
     position: relative;
     height: 100vh;
+    min-height: 800px;
     width: 100%;
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr auto;
     padding: var(--content-padding);
+    padding-top: 20vh;
 }
 
 .hero-background {
@@ -268,64 +270,11 @@ h3 { font-size: clamp(1.5rem, 3vw, 3rem); font-family: var(--font-body); font-we
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 60vw;
-    height: 70vh;
-    z-index: 10;
+    width: 50vw;
+    height: 60vh;
+    z-index: -1;
     overflow: hidden;
-    opacity: 0;
-}
-
-.hero-image-placeholder {
-    width: 100%;
-    height: 100%;
-    background-image: url('WhatsApp Image 2026-03-12 at 1.53.57 PM.jpeg');
-    background-size: cover;
-    background-position: center center;
-    filter: sepia(20%) contrast(1.1);
-}
-
-#canvas3d {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none; /* Let clicks pass through if needed */
-    z-index: 1;
-}
-
-/* The Twin Wrapper simulates the full #hero section coordinate system */
-.hero-twin-wrapper {
-    position: absolute;
-    top: -10vh; /* Counteract the center-alignment (50vh - 40vh) */
-    left: -15vw; /* Counteract the center-alignment (50vw - 35vw) */
-    width: 100vw;
-    height: 100vh;
-    pointer-events: none;
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr auto;
-    padding: var(--content-padding);
-}
-
-.hero-title-reveal {
-    color: var(--accent-primary) !important;
-    pointer-events: none;
-    z-index: 20;
-}
-
-.hero-title-reveal span {
-    color: var(--accent-primary) !important;
-}
-
-/* Match the exact position of the original content */
-.hero-content {
-    align-self: end;
-    position: relative;
-    z-index: 5;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+    opacity: 0; /* JS will fade this in */
 }
 
 .loaded .hero-background {
@@ -336,6 +285,23 @@ h3 { font-size: clamp(1.5rem, 3vw, 3rem); font-family: var(--font-body); font-we
     0% { opacity: 0; transform: translate(-50%, -50%) scale(1.1); filter: blur(10px); }
     100% { opacity: 1; transform: translate(-50%, -50%) scale(1); filter: blur(0); }
 }
+
+.hero-image-placeholder {
+    width: 100%; height: 100%;
+    background-image: url('WhatsApp Image 2026-03-12 at 1.53.50 PM.jpeg'); /* Central focal image */
+    background-size: cover;
+    background-position: center 30%;
+    filter: sepia(20%) contrast(1.1); /* Warm filter */
+}
+
+.hero-content {
+    align-self: end;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
 .hero-title-container {
     display: flex;
     flex-direction: column;
@@ -347,14 +313,8 @@ h3 { font-size: clamp(1.5rem, 3vw, 3rem); font-family: var(--font-body); font-we
     overflow: hidden;
 }
 
-.hero-title .char {
-    display: inline-block;
-    transition: transform 0.1s ease-out; /* Smooth small adjustments */
-    will-change: transform;
-}
-
 .hero-title span {
-    display: inline-block;
+    display: block;
     transform: translateY(110%);
     opacity: 0;
 }
