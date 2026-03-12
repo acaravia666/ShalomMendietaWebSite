@@ -62,11 +62,6 @@ body {
     overflow-x: hidden;
 }
 
-/* Ensure all core layout elements have explicit backgrounds */
-header, main, section, footer {
-    background-color: var(--bg-color);
-}
-
 body.loading {
     overflow: hidden;
 }
