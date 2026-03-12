@@ -284,12 +284,26 @@ h3 { font-size: clamp(1.5rem, 3vw, 3rem); font-family: var(--font-body); font-we
     filter: sepia(20%) contrast(1.1);
 }
 
-.hero-title-reveal {
+/* The Twin Wrapper simulates the full #hero section coordinate system */
+.hero-twin-wrapper {
     position: absolute;
+    top: -15vh; /* Counteract the center-alignment (50vh - 35vh) */
+    left: -20vw; /* Counteract the center-alignment (50vw - 30vw) */
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr auto;
+    padding: var(--content-padding);
+}
+
+.hero-title-reveal {
+    color: var(--accent-primary) !important;
+    position: absolute; /* Keep original positioning properties */
     bottom: calc(var(--content-padding) - 15vh);
     left: calc(var(--content-padding) - 20vw);
     width: 100vw;
-    color: var(--accent-primary) !important;
     pointer-events: none;
     z-index: 20;
 }
