@@ -1,142 +1,102 @@
-/**
- * main.js
- * Core logic for editorial scroll animations and parallax.
- */
+// ==========================================================================
+// SHALOM MENDIETA — main.js
+// ==========================================================================
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    // 1. Cinematic Loader & Splash Screen
+    // ── Loader ──────────────────────────────────────────────────────────────
     const loader = document.getElementById('loader');
-    
-    // Smooth, slightly longer load for a "studio" feel
+    const body   = document.body;
+
     setTimeout(() => {
-        if(loader) loader.classList.add('hidden');
-        document.body.classList.remove('loading');
-        document.body.classList.add('loaded'); // Triggers cinematic hero sequences
-        
-        initScrollAnimations();
-        initParallaxEffects();
+        loader.classList.add('hidden');
+        body.classList.remove('loading');
     }, 1800);
 
-    // 2. Intersection Observer for Smooth Reveals
-    function initScrollAnimations() {
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.15 // Reveal when element is 15% visible
-        };
+    // ── Navigation (scroll state) ───────────────────────────────────────────
+    const nav = document.getElementById('mainNav');
 
-        const observer = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    // Stop observing once revealed to retain the final state
-                    observer.unobserve(entry.target); 
-                }
-            });
-        }, observerOptions);
+    const updateNav = () => {
+        nav.classList.toggle('scrolled', window.scrollY > 60);
+    };
 
-        const animatedElements = document.querySelectorAll('.reveal-up');
-        animatedElements.forEach(el => observer.observe(el));
-    }
+    window.addEventListener('scroll', updateNav, { passive: true });
+    updateNav();
 
-    // 3. Advanced Parallax for Images
-    function initParallaxEffects() {
-        const parallaxBgs = document.querySelectorAll('.parallax-bg');
-        const parallaxImgs = document.querySelectorAll('.parallax-img');
-        const heroBg = document.querySelector('.hero-image-placeholder');
-        
-        // Use requestAnimationFrame for smooth jank-free scrolling
-        let ticking = false;
+    // ── Hero Parallax ───────────────────────────────────────────────────────
+    const heroBg = document.getElementById('heroBg');
 
-        window.addEventListener('scroll', () => {
-            if (!ticking) {
-                window.requestAnimationFrame(() => {
-                    const scrollY = window.scrollY;
-                    
-                    // Subtle hero parallax
-                    if (heroBg && scrollY < window.innerHeight) {
-                        heroBg.style.transform = `translateY(${scrollY * 0.25}px) scale(1.05)`;
-                    }
+    window.addEventListener('scroll', () => {
+        if (!heroBg) return;
+        const scrollY = window.scrollY;
+        if (scrollY < window.innerHeight) {
+            heroBg.style.transform = `translateY(${scrollY * 0.35}px)`;
+        }
+    }, { passive: true });
 
-                    // Gallery Background Parallax (Moves slower than scroll)
-                    parallaxBgs.forEach(bg => {
-                        const parent = bg.closest('.gallery-item');
-                        if (!parent) return;
+    // ── Scroll Reveal (Intersection Observer) ───────────────────────────────
+    const revealEls = document.querySelectorAll('.fade-up');
 
-                        const rect = parent.getBoundingClientRect();
-                        // Only animate if in viewport
-                        if(rect.top < window.innerHeight && rect.bottom > 0) {
-                            const offset = (window.innerHeight - rect.top) * 0.1;
-                            bg.style.transform = `translateY(${offset}px) scale(1.15)`;
-                        }
-                    });
-
-                    // Editorial Spread Image Parallax (Moves slightly up)
-                    parallaxImgs.forEach(img => {
-                        const rect = img.getBoundingClientRect();
-                        if(rect.top < window.innerHeight && rect.bottom > 0) {
-                            const offset = rect.top * 0.05;
-                            img.style.transform = `translateY(${offset}px)`;
-                        }
-                    });
-
-                    ticking = false;
-                });
-                ticking = true;
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                revealObserver.unobserve(entry.target);
             }
-        }, { passive: true });
-    }
+        });
+    }, {
+        threshold: 0.12,
+        rootMargin: '0px 0px -40px 0px'
+    });
 
-    // 4. Smooth Scrolling for Navigation
+    revealEls.forEach(el => revealObserver.observe(el));
+
+    // ── Smooth Scroll for anchor links ──────────────────────────────────────
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            
-            const targetId = this.getAttribute('href');
-            if(targetId === '#') return;
-            
-            const targetElement = document.querySelector(targetId);
-            
-            if (targetElement) {
-                // Adjust for fixed nav padding
-                const offsetTop = targetElement.getBoundingClientRect().top + window.scrollY - 100;
-                
-                window.scrollTo({
-                    top: offsetTop,
-                    behavior: 'smooth'
-                });
+        anchor.addEventListener('click', e => {
+            const target = document.querySelector(anchor.getAttribute('href'));
+            if (target) {
+                e.preventDefault();
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
         });
     });
 
-    // 5. Portfolio Carousel Drag to Scroll
-    const slider = document.querySelector('.carousel-container');
-    if (slider) {
-        let isDown = false;
-        let startX;
-        let scrollLeft;
+    // ── Mobile Menu Toggle ──────────────────────────────────────────────────
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks   = document.querySelector('.nav-links');
 
-        slider.addEventListener('mousedown', (e) => {
-            isDown = true;
-            slider.style.cursor = 'grabbing';
-            startX = e.pageX - slider.offsetLeft;
-            scrollLeft = slider.scrollLeft;
+    if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', () => {
+            const open = navLinks.style.display === 'flex';
+            navLinks.style.display = open ? '' : 'flex';
+            navLinks.style.flexDirection = 'column';
+            navLinks.style.position = 'absolute';
+            navLinks.style.top = '100%';
+            navLinks.style.left = '0';
+            navLinks.style.right = '0';
+            navLinks.style.background = 'var(--c-bg)';
+            navLinks.style.padding = '1.5rem 2rem';
+            navLinks.style.gap = '1.2rem';
+            navLinks.style.boxShadow = '0 8px 20px rgba(0,0,0,0.08)';
+            if (open) navLinks.removeAttribute('style');
         });
-        slider.addEventListener('mouseleave', () => {
-            isDown = false;
-            slider.style.cursor = 'grab';
-        });
-        slider.addEventListener('mouseup', () => {
-            isDown = false;
-            slider.style.cursor = 'grab';
-        });
-        slider.addEventListener('mousemove', (e) => {
-            if (!isDown) return;
+    }
+
+    // ── Newsletter Form ─────────────────────────────────────────────────────
+    const form = document.getElementById('newsletterForm');
+    if (form) {
+        form.addEventListener('submit', e => {
             e.preventDefault();
-            const x = e.pageX - slider.offsetLeft;
-            const walk = (x - startX) * 2; // Scroll-fast multiplier
-            slider.scrollLeft = scrollLeft - walk;
+            const input = form.querySelector('input');
+            const btn   = form.querySelector('button');
+            btn.textContent = '¡Listo!';
+            btn.style.background = '#2d7a45';
+            input.value = '';
+            setTimeout(() => {
+                btn.textContent = 'Suscribirse';
+                btn.style.background = '';
+            }, 3000);
         });
     }
 
