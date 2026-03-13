@@ -4,30 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shalom Mendieta | Cantautora Ecuatoriana</title>
-    <meta name="description" content="Sitio oficial de Shalom Mendieta. Descubre su música, videos, merch y próximos lanzamientos. Pop alternativo, música latina contemporánea.">
+    <meta name="description" content="Sitio oficial de Shalom Mendieta — cantautora ecuatoriana. Pop alternativo, música latina contemporánea. Madera, cuero y tierra.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body class="loading">
 
-    <!-- Loader -->
+    <!-- ░ LOADER ░ -->
     <div id="loader" class="loader">
-        <div class="loader-inner">
-            <p class="loader-name">SHALOM MENDIETA</p>
-        </div>
+        <p class="loader-name">Shalom Mendieta</p>
+        <div class="loader-rule"></div>
     </div>
 
-    <!-- Navigation -->
+    <!-- ░ NAV ░ -->
     <nav class="main-nav" id="mainNav">
-        <div class="nav-container">
+        <div class="nav-inner">
             <a href="#hero" class="nav-brand">S·M</a>
-            <div class="nav-links">
+            <div class="nav-links" id="navLinks">
                 <a href="#music">Música</a>
                 <a href="#bio">Artista</a>
                 <a href="#shop">Tienda</a>
                 <a href="#press">Prensa</a>
+                <a href="#community">Comunidad</a>
             </div>
             <button class="menu-toggle" id="menuToggle" aria-label="Menú">
                 <span></span><span></span>
@@ -37,86 +37,171 @@
 
     <main>
 
-        <!-- ░░ HERO ░░ -->
+        <!-- ░░░ HERO ░░░ -->
         <section id="hero" class="hero">
-            <div class="hero-bg" id="heroBg">
-                <img src="WhatsApp Image 2026-03-12 at 1.53.51 PM (2).jpeg" alt="Shalom Mendieta" class="hero-img">
-                <div class="hero-overlay"></div>
+            <div class="hero-bg">
+                <img
+                    src="WhatsApp Image 2026-03-12 at 1.53.51 PM (2).jpeg"
+                    alt="Shalom Mendieta"
+                    class="hero-img"
+                >
+                <div class="hero-vignette"></div>
             </div>
 
             <div class="hero-content">
-                <div class="hero-tag fade-in" style="animation-delay: 0.3s">Cantautora · Ecuador</div>
+                <div class="hero-tag">Cantautora · Ecuador · 2026</div>
                 <h1 class="hero-title">
-                    <span class="line fade-in" style="animation-delay:0.5s">Shalom</span>
-                    <span class="line fade-in" style="animation-delay:0.7s">Mendieta</span>
+                    <span class="line">Shalom</span>
+                    <span class="line line-2"><em>Mendieta</em></span>
                 </h1>
-                <p class="hero-sub fade-in" style="animation-delay:0.9s">Madera · Cuero · Tierra</p>
-                <a href="#music" class="btn-ghost fade-in" style="animation-delay:1.1s">Explorar</a>
+                <p class="hero-sub">Madera · Cuero · Tierra</p>
+                <div class="hero-ctas">
+                    <a href="#music" class="btn btn-ghost btn-arrow">Explorar Obra</a>
+                    <a href="PRESSKIT SHALOM MENDIETA.pdf" download class="btn btn-outline" style="border-color:rgba(255,255,255,.3);color:rgba(255,255,255,.7)">Press Kit</a>
+                </div>
             </div>
 
-            <div class="scroll-cue fade-in" style="animation-delay:1.5s">
+            <!-- Bottom stat bar -->
+            <div class="hero-stat-bar">
+                <div class="hero-stat">
+                    <span class="stat-num">12</span>
+                    <span class="stat-label">Años componiendo</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="stat-num">4</span>
+                    <span class="stat-label">Singles lanzados</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="stat-num">2</span>
+                    <span class="stat-label">Géneros fusionados</span>
+                </div>
+            </div>
+
+            <div class="scroll-cue">
+                <span>Scroll</span>
                 <div class="scroll-line"></div>
             </div>
         </section>
 
-        <!-- ░░ BIO ░░ -->
-        <section id="bio" class="section bio-section">
-            <div class="container">
-                <div class="two-col">
-                    <div class="col-img fade-up">
-                        <div class="img-frame">
-                            <img src="WhatsApp Image 2026-03-12 at 1.53.51 PM (1).jpeg" alt="Shalom Mendieta Portrait">
+        <!-- ░░░ MANIFESTO ░░░ -->
+        <section class="manifesto-section section">
+            <div class="wrap manifesto-inner">
+                <p class="manifesto-text fade-up">
+                    Mi música no nace del ruido, <em>sino del silencio de las raíces.</em> Es una búsqueda constante entre lo que somos y lo que recordamos ser.
+                </p>
+                <div class="manifesto-aside fade-up" style="transition-delay:0.2s">
+                    <p class="manifesto-credit">—&nbsp;Shalom Mendieta, Ecuador</p>
+                    <a href="#bio" class="btn btn-outline" style="border-color:rgba(255,255,255,0.2);color:rgba(237,232,223,0.6)">Leer más</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ░░░ BIO ░░░ -->
+        <section id="bio" class="bio-section section">
+            <div class="wrap">
+                <div class="bio-grid">
+                    <!-- Image -->
+                    <div class="bio-img-wrap reveal-left">
+                        <div class="bio-img-frame">
+                            <img
+                                src="WhatsApp Image 2026-03-12 at 1.53.51 PM (1).jpeg"
+                                alt="Shalom Mendieta — Retrato"
+                            >
                         </div>
+                        <p class="bio-img-caption">© 2026 Shalom Mendieta</p>
                     </div>
-                    <div class="col-text fade-up" style="transition-delay:0.15s">
-                        <span class="eyebrow">Artista</span>
-                        <h2>El Latir<br>de la Tierra</h2>
-                        <p>Mi música no nace del ruido, sino del silencio de las raíces. Es una búsqueda constante entre lo que somos y lo que recordamos ser — una fusión orgánica de pop latinoamericano, bachata y ritmos urbanos.</p>
-                        <p>Desde componer a los 12 años hasta compartir escenario con leyendas, cada canción es un registro honesto del camino.</p>
-                        <blockquote>"La paz no es ausencia de movimiento, sino armonía en él."</blockquote>
-                        <a href="#music" class="btn-primary">Escuchar Música</a>
+
+                    <!-- Text -->
+                    <div class="bio-text-wrap reveal-right">
+                        <span class="tag">Artista</span>
+                        <h2>El Latir<br>de la<br><em>Tierra</em></h2>
+
+                        <div class="bio-body" style="margin-top:2rem">
+                            <p>Desde componer a los 12 años hasta compartir escenario con leyendas de la música latinoamericana, el camino de Shalom ha sido una fusión orgánica de ritmos, emociones y raíces.</p>
+                            <p>Su música abraza el pop latinoamericano, la bachata, la salsa y los ritmos urbanos — siempre desde la sinceridad emocional y la conexión con la tierra.</p>
+                        </div>
+
+                        <blockquote class="fade-up" style="margin-top:3rem">
+                            "La paz no es ausencia de movimiento, sino armonía en él."
+                        </blockquote>
+
+                        <!-- Milestones -->
+                        <div class="bio-milestones" style="margin-top:3rem">
+                            <div class="milestone fade-up">
+                                <span class="milestone-year">2013</span>
+                                <span class="milestone-text">Compone sus primeras canciones a los 12 años</span>
+                            </div>
+                            <div class="milestone fade-up" style="transition-delay:.1s">
+                                <span class="milestone-year">2019</span>
+                                <span class="milestone-text">Comparte escenario con artistas internacionales</span>
+                            </div>
+                            <div class="milestone fade-up" style="transition-delay:.2s">
+                                <span class="milestone-year">2024</span>
+                                <span class="milestone-text">Lanza "Ayayay" — su primer single independiente</span>
+                            </div>
+                            <div class="milestone fade-up" style="transition-delay:.3s">
+                                <span class="milestone-year">2026</span>
+                                <span class="milestone-text">Presentación en vivo y nuevo material en camino</span>
+                            </div>
+                        </div>
+
+                        <a href="PRESSKIT SHALOM MENDIETA.pdf" download class="btn btn-outline" style="margin-top:3rem">Descargar Press Kit</a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- ░░ MUSIC / VIDEO ░░ -->
-        <section id="music" class="section music-section">
-            <div class="section-bg-text" aria-hidden="true">MÚSICA</div>
-            <div class="container">
-                <div class="section-header fade-up">
-                    <span class="eyebrow">Obra Visual</span>
-                    <h2>Fragmentos<br><em>Visionales</em></h2>
+        <!-- ░░░ MUSIC / VIDEO ░░░ -->
+        <section id="music" class="music-section section">
+            <div class="wrap">
+                <div class="music-headline fade-up">
+                    <div>
+                        <span class="tag">Obra Visual</span>
+                        <h2>Fragmentos<br><em>Visionales</em></h2>
+                    </div>
+                    <div class="music-headline-right">
+                        <a href="#" class="btn btn-outline btn-arrow">Canal Oficial</a>
+                    </div>
                 </div>
-                <div class="video-layout fade-up" style="transition-delay:0.15s">
-                    <div class="video-featured">
-                        <div class="video-thumb" style="background-image:url('WhatsApp Image 2026-03-12 at 1.53.51 PM (2).jpeg')">
-                            <div class="play-btn" aria-label="Reproducir video">
-                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+
+                <div class="music-layout fade-up" style="transition-delay:0.15s">
+                    <!-- Featured video -->
+                    <div class="video-main-card">
+                        <div class="video-thumb-large" style="background-image:url('WhatsApp Image 2026-03-12 at 1.53.51 PM (2).jpeg')">
+                            <div class="video-play">
+                                <div class="play-ring">
+                                    <svg viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg>
+                                </div>
                             </div>
                         </div>
-                        <div class="video-meta">
+                        <div class="video-title-bar">
                             <h3>Ayayay</h3>
-                            <p>Video Oficial · 2026</p>
+                            <span class="video-meta-text">Video Oficial · 2026</span>
                         </div>
                     </div>
-                    <div class="video-secondary">
-                        <div class="video-thumb small" style="background-image:url('WhatsApp Image 2026-03-12 at 1.53.56 PM (2).jpeg')">
-                            <div class="play-btn" aria-label="Reproducir video">
-                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+
+                    <!-- Side videos -->
+                    <div class="video-side">
+                        <div class="video-side-card">
+                            <div class="video-thumb-sm" style="background-image:url('WhatsApp Image 2026-03-12 at 1.53.56 PM (2).jpeg')"></div>
+                            <div class="video-side-info">
+                                <h4>Tranqui</h4>
+                                <p>Sesión en Vivo · 2026</p>
                             </div>
                         </div>
-                        <div class="video-meta">
-                            <h3>Tranqui</h3>
-                            <p>Sesión en Vivo · 2026</p>
+                        <div class="video-side-card">
+                            <div class="video-thumb-sm" style="background-image:url('WhatsApp Image 2026-03-12 at 1.53.50 PM.jpeg')"></div>
+                            <div class="video-side-info">
+                                <h4>Madera & Cuero</h4>
+                                <p>Backstage · 2026</p>
+                            </div>
                         </div>
-                        <a href="#" class="btn-outline mt-2">Ver Canal</a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- ░░ GALLERY STRIP ░░ -->
+        <!-- ░░░ GALLERY STRIP ░░░ -->
         <div class="gallery-strip" aria-hidden="true">
             <div class="strip-track">
                 <img src="WhatsApp Image 2026-03-12 at 1.53.50 PM.jpeg" alt="">
@@ -124,7 +209,6 @@
                 <img src="WhatsApp Image 2026-03-12 at 1.53.56 PM (1).jpeg" alt="">
                 <img src="WhatsApp Image 2026-03-12 at 1.53.56 PM.jpeg" alt="">
                 <img src="WhatsApp Image 2026-03-12 at 1.53.51 PM (2).jpeg" alt="">
-                <!-- duplicate for infinite loop -->
                 <img src="WhatsApp Image 2026-03-12 at 1.53.50 PM.jpeg" alt="">
                 <img src="WhatsApp Image 2026-03-12 at 1.53.51 PM (1).jpeg" alt="">
                 <img src="WhatsApp Image 2026-03-12 at 1.53.56 PM (1).jpeg" alt="">
@@ -133,115 +217,139 @@
             </div>
         </div>
 
-        <!-- ░░ SHOP ░░ -->
-        <section id="shop" class="section shop-section">
-            <div class="container">
-                <div class="section-header text-center fade-up">
-                    <span class="eyebrow">Tienda</span>
-                    <h2>Colección<br><em>Curada</em></h2>
-                    <p class="section-desc">Objetos inspirados en la tierra y el sonido.</p>
+        <!-- ░░░ SHOP ░░░ -->
+        <section id="shop" class="shop-section section">
+            <div class="wrap">
+                <div class="shop-header fade-up">
+                    <div>
+                        <span class="tag">Tienda</span>
+                        <h2>Colección<br><em>Curada</em></h2>
+                    </div>
+                    <a href="#" class="btn btn-outline btn-arrow">Ver Todo</a>
                 </div>
+
                 <div class="products-grid">
                     <div class="product-card fade-up">
-                        <div class="product-img" style="background-image:url('WhatsApp Image 2026-03-12 at 1.53.57 PM.jpeg')">
-                            <div class="product-overlay"><span>Ver Producto</span></div>
+                        <div class="product-img-wrap">
+                            <div class="product-img" style="background-image:url('WhatsApp Image 2026-03-12 at 1.53.57 PM.jpeg')"></div>
+                            <div class="product-hover-label"><span>Ver Producto</span></div>
                         </div>
-                        <div class="product-info">
-                            <h3>Camiseta Tribal</h3>
-                            <span class="price">$25.00</span>
-                        </div>
-                    </div>
-                    <div class="product-card fade-up" style="transition-delay:0.1s">
-                        <div class="product-img" style="background-image:url('WhatsApp Image 2026-03-12 at 1.53.51 PM (3).jpeg')">
-                            <div class="product-overlay"><span>Ver Producto</span></div>
-                        </div>
-                        <div class="product-info">
-                            <h3>Anillo Fugaz</h3>
-                            <span class="price">$45.00</span>
+                        <div class="product-foot">
+                            <span class="product-name">Camiseta Tribal</span>
+                            <span class="price">$25</span>
                         </div>
                     </div>
-                    <div class="product-card fade-up" style="transition-delay:0.2s">
-                        <div class="product-img" style="background-image:url('WhatsApp Image 2026-03-12 at 1.53.50 PM (1).jpeg')">
-                            <div class="product-overlay"><span>Ver Producto</span></div>
+                    <div class="product-card fade-up" style="transition-delay:.1s">
+                        <div class="product-img-wrap">
+                            <div class="product-img" style="background-image:url('WhatsApp Image 2026-03-12 at 1.53.51 PM (3).jpeg')"></div>
+                            <div class="product-hover-label"><span>Ver Producto</span></div>
                         </div>
-                        <div class="product-info">
-                            <h3>Pulsera Cuero</h3>
-                            <span class="price">$15.00</span>
+                        <div class="product-foot">
+                            <span class="product-name">Anillo Fugaz</span>
+                            <span class="price">$45</span>
                         </div>
                     </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ░░ SERVICES ░░ -->
-        <section id="services" class="section services-section">
-            <div class="container">
-                <div class="two-col align-top">
-                    <div class="fade-up">
-                        <span class="eyebrow">Colaboraciones</span>
-                        <h2>Mentorías &<br><em>Asesorías</em></h2>
-                    </div>
-                    <div class="services-list fade-up" style="transition-delay:0.15s">
-                        <div class="service-item">
-                            <div class="service-num">01</div>
-                            <div>
-                                <h3>Asesoría Artística</h3>
-                                <p>Desarrollo de identidad musical y presencia en escenario para artistas emergentes.</p>
-                                <a href="mailto:management@shalommendieta.com" class="service-link">Agendar →</a>
-                            </div>
+                    <div class="product-card fade-up" style="transition-delay:.2s">
+                        <div class="product-img-wrap">
+                            <div class="product-img" style="background-image:url('WhatsApp Image 2026-03-12 at 1.53.50 PM (1).jpeg')"></div>
+                            <div class="product-hover-label"><span>Ver Producto</span></div>
                         </div>
-                        <div class="service-item">
-                            <div class="service-num">02</div>
-                            <div>
-                                <h3>Composición Musical</h3>
-                                <p>Mentoría en creación de letras y estructuras para canciones Pop y Latin.</p>
-                                <a href="mailto:management@shalommendieta.com" class="service-link">Agendar →</a>
-                            </div>
+                        <div class="product-foot">
+                            <span class="product-name">Pulsera Cuero</span>
+                            <span class="price">$15</span>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- ░░ COMMUNITY / NEWSLETTER ░░ -->
-        <section id="community" class="section community-section">
-            <div class="container text-center fade-up">
-                <span class="eyebrow">Comunidad</span>
-                <h2>Únete al<br><em>Universo</em></h2>
-                <p>Sé el primero en escuchar nuevos lanzamientos y noticias sobre la gira.</p>
+        <!-- ░░░ SERVICES ░░░ -->
+        <section id="services" class="services-section section">
+            <div class="wrap">
+                <span class="tag">Colaboraciones</span>
+                <h2>Mentorías &<br><em>Asesorías</em></h2>
+
+                <div class="services-grid" style="margin-top:clamp(48px,6vw,80px)">
+                    <div class="service-item fade-up">
+                        <div class="service-num">01</div>
+                        <h3>Asesoría Artística</h3>
+                        <p>Desarrollo de identidad musical y presencia en escenario para artistas emergentes.</p>
+                        <a href="mailto:management@shalommendieta.com" class="service-cta">Agendar →</a>
+                    </div>
+                    <div class="service-item fade-up" style="transition-delay:.1s">
+                        <div class="service-num">02</div>
+                        <h3>Composición Musical</h3>
+                        <p>Mentoría en creación de letras y estructuras para canciones Pop y Latin.</p>
+                        <a href="mailto:management@shalommendieta.com" class="service-cta">Agendar →</a>
+                    </div>
+                    <div class="service-item fade-up" style="transition-delay:.2s">
+                        <div class="service-num">03</div>
+                        <h3>Dirección Creativa</h3>
+                        <p>Orientación en dirección de arte, imagen visual y narrativa de marca para músicos.</p>
+                        <a href="mailto:management@shalommendieta.com" class="service-cta">Agendar →</a>
+                    </div>
+                    <div class="service-item fade-up" style="transition-delay:.3s">
+                        <div class="service-num">04</div>
+                        <h3>Booking & Shows</h3>
+                        <p>Gestión de presentaciones en vivo y colaboraciones para festivales y eventos.</p>
+                        <a href="mailto:management@shalommendieta.com" class="service-cta">Contactar →</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ░░░ NEWSLETTER ░░░ -->
+        <section id="community" class="community-section section">
+            <div class="community-bg-text" aria-hidden="true">S·M</div>
+            <div class="wrap community-inner">
+                <div class="fade-up">
+                    <span class="tag">Comunidad</span>
+                    <h2>Únete al<br><em>Universo</em></h2>
+                    <p>Sé el primero en escuchar nuevos lanzamientos y noticias exclusivas.</p>
+                </div>
                 <form class="newsletter-form" id="newsletterForm">
-                    <input type="email" placeholder="tu@correo.com" required>
-                    <button type="submit" class="btn-primary">Suscribirse</button>
+                    <input type="email" placeholder="tu@correo.com" required aria-label="Tu correo">
+                    <button type="submit" class="btn">Suscribirse</button>
                 </form>
             </div>
         </section>
 
-        <!-- ░░ PRESS ░░ -->
-        <section id="press" class="section press-section">
-            <div class="container">
-                <div class="two-col align-center fade-up">
-                    <div>
-                        <span class="eyebrow">Prensa</span>
+        <!-- ░░░ PRESS ░░░ -->
+        <section id="press" class="press-section section">
+            <div class="wrap">
+                <div class="press-layout">
+                    <div class="press-left fade-up">
+                        <span class="tag">Prensa</span>
                         <h2>Press Kit<br><em>Oficial</em></h2>
-                        <p>Биография, fotos de alta resolución y materiales para medios disponibles para descarga.</p>
+                        <p>Biografía oficial, fotos de alta resolución y materiales para medios disponibles para descarga.</p>
+                        <a href="mailto:management@shalommendieta.com" class="btn btn-outline btn-arrow">Contactar Prensa</a>
                     </div>
-                    <div class="press-links">
+                    <div class="press-cards fade-up" style="transition-delay:0.15s">
                         <a href="PRESSKIT SHALOM MENDIETA.pdf" download class="press-card">
                             <div class="press-icon">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 16V4m0 12-3-3m3 3 3-3M4 20h16"/></svg>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 16V4m0 12-3-3m3 3 3-3"/><path d="M4 20h16"/></svg>
                             </div>
-                            <div>
+                            <div class="press-info">
                                 <strong>Press Kit Completo</strong>
                                 <span>PDF · 2.6 MB</span>
                             </div>
                         </a>
-                        <a href="mailto:management@shalommendieta.com" class="press-card">
+                        <a href="#" class="press-card">
+                            <div class="press-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+                            </div>
+                            <div class="press-info">
+                                <strong>Fotos Oficiales</strong>
+                                <span>ZIP · Alta Resolución</span>
+                            </div>
+                        </a>
+                        <a href="mailto:hola@shalommendieta.com" class="press-card">
                             <div class="press-icon">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 8V16a2 2 0 01-2 2H5a2 2 0 01-2-2V8m18 0l-9 6-9-6m18 0a2 2 0 00-2-2H5a2 2 0 00-2 2"/></svg>
                             </div>
-                            <div>
-                                <strong>Contacto Prensa</strong>
-                                <span>management@shalommendieta.com</span>
+                            <div class="press-info">
+                                <strong>Contacto Directo</strong>
+                                <span>hola@shalommendieta.com</span>
                             </div>
                         </a>
                     </div>
@@ -251,28 +359,36 @@
 
     </main>
 
-    <!-- ░░ FOOTER ░░ -->
+    <!-- ░░░ FOOTER ░░░ -->
     <footer class="site-footer">
-        <div class="container footer-inner">
+        <div class="wrap footer-top">
             <div class="footer-brand">
-                <h2>Shalom Mendieta</h2>
-                <p>Cantautora Ecuatoriana</p>
+                <p>Shalom<br>Mendieta</p>
+                <span class="footer-brand-sub">Cantautora Ecuatoriana · © 2026</span>
             </div>
-            <nav class="footer-nav">
-                <a href="#music">Música</a>
-                <a href="#bio">Artista</a>
-                <a href="#shop">Tienda</a>
-                <a href="#press">Prensa</a>
-            </nav>
-            <div class="footer-social">
-                <a href="#" aria-label="Instagram">IG</a>
-                <a href="#" aria-label="TikTok">TK</a>
-                <a href="#" aria-label="YouTube">YT</a>
-                <a href="#" aria-label="Spotify">SP</a>
+            <div>
+                <p class="footer-col-title">Navegación</p>
+                <div class="footer-links">
+                    <a href="#music">Música</a>
+                    <a href="#bio">Artista</a>
+                    <a href="#shop">Tienda</a>
+                    <a href="#services">Servicios</a>
+                    <a href="#press">Prensa</a>
+                </div>
+            </div>
+            <div>
+                <p class="footer-col-title">Redes</p>
+                <div class="footer-social-list">
+                    <a href="#">Instagram</a>
+                    <a href="#">TikTok</a>
+                    <a href="#">YouTube</a>
+                    <a href="#">Spotify</a>
+                </div>
             </div>
         </div>
-        <div class="footer-bottom container">
-            <p>© 2026 Shalom Mendieta · Todos los derechos reservados.</p>
+        <div class="wrap footer-bottom">
+            <p>© 2026 Shalom Mendieta. Todos los derechos reservados.</p>
+            <p>management@shalommendieta.com</p>
         </div>
     </footer>
 

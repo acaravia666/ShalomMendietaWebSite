@@ -8,95 +8,104 @@ document.addEventListener('DOMContentLoaded', () => {
     const loader = document.getElementById('loader');
     const body   = document.body;
 
-    setTimeout(() => {
+    const hideLoader = () => {
         loader.classList.add('hidden');
         body.classList.remove('loading');
-    }, 1800);
-
-    // ── Navigation (scroll state) ───────────────────────────────────────────
-    const nav = document.getElementById('mainNav');
-
-    const updateNav = () => {
-        nav.classList.toggle('scrolled', window.scrollY > 60);
     };
 
-    window.addEventListener('scroll', updateNav, { passive: true });
-    updateNav();
+    // Wait for fonts + min time
+    Promise.all([
+        document.fonts.ready,
+        new Promise(res => setTimeout(res, 1800))
+    ]).then(hideLoader);
+
+    // ── Nav scroll state ────────────────────────────────────────────────────
+    const nav = document.getElementById('mainNav');
+
+    const tickNav = () => {
+        nav.classList.toggle('scrolled', window.scrollY > 50);
+    };
+
+    window.addEventListener('scroll', tickNav, { passive: true });
+    tickNav();
 
     // ── Hero Parallax ───────────────────────────────────────────────────────
-    const heroBg = document.getElementById('heroBg');
+    const heroBg = document.querySelector('.hero-bg');
 
     window.addEventListener('scroll', () => {
-        if (!heroBg) return;
-        const scrollY = window.scrollY;
-        if (scrollY < window.innerHeight) {
-            heroBg.style.transform = `translateY(${scrollY * 0.35}px)`;
-        }
+        if (!heroBg || window.scrollY > window.innerHeight) return;
+        heroBg.style.transform = `translateY(${window.scrollY * 0.3}px)`;
     }, { passive: true });
 
-    // ── Scroll Reveal (Intersection Observer) ───────────────────────────────
-    const revealEls = document.querySelectorAll('.fade-up');
+    // ── Scroll Reveal ───────────────────────────────────────────────────────
+    const revealEls = document.querySelectorAll('.fade-up, .reveal-left, .reveal-right');
 
-    const revealObserver = new IntersectionObserver((entries) => {
+    const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
-                revealObserver.unobserve(entry.target);
+                observer.unobserve(entry.target);
             }
         });
     }, {
-        threshold: 0.12,
-        rootMargin: '0px 0px -40px 0px'
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
     });
 
-    revealEls.forEach(el => revealObserver.observe(el));
+    revealEls.forEach(el => observer.observe(el));
 
-    // ── Smooth Scroll for anchor links ──────────────────────────────────────
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', e => {
-            const target = document.querySelector(anchor.getAttribute('href'));
-            if (target) {
-                e.preventDefault();
-                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
+    // ── Smooth Scroll ───────────────────────────────────────────────────────
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+        link.addEventListener('click', e => {
+            const target = document.querySelector(link.getAttribute('href'));
+            if (!target) return;
+            e.preventDefault();
+            const y = target.getBoundingClientRect().top + window.scrollY - 80;
+            window.scrollTo({ top: y, behavior: 'smooth' });
         });
     });
 
-    // ── Mobile Menu Toggle ──────────────────────────────────────────────────
-    const menuToggle = document.getElementById('menuToggle');
-    const navLinks   = document.querySelector('.nav-links');
+    // ── Mobile Menu ─────────────────────────────────────────────────────────
+    const toggle  = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+    let mobileOpen = false;
 
-    if (menuToggle && navLinks) {
-        menuToggle.addEventListener('click', () => {
-            const open = navLinks.style.display === 'flex';
-            navLinks.style.display = open ? '' : 'flex';
-            navLinks.style.flexDirection = 'column';
-            navLinks.style.position = 'absolute';
-            navLinks.style.top = '100%';
-            navLinks.style.left = '0';
-            navLinks.style.right = '0';
-            navLinks.style.background = 'var(--c-bg)';
-            navLinks.style.padding = '1.5rem 2rem';
-            navLinks.style.gap = '1.2rem';
-            navLinks.style.boxShadow = '0 8px 20px rgba(0,0,0,0.08)';
-            if (open) navLinks.removeAttribute('style');
+    if (toggle && navLinks) {
+        toggle.addEventListener('click', () => {
+            mobileOpen = !mobileOpen;
+            if (mobileOpen) {
+                navLinks.style.cssText = `
+                    display: flex;
+                    flex-direction: column;
+                    position: absolute;
+                    top: 100%;
+                    left: 0; right: 0;
+                    background: var(--c-bg);
+                    padding: 2rem var(--gutter);
+                    gap: 1.5rem;
+                    border-top: 1px solid rgba(0,0,0,0.07);
+                    box-shadow: 0 20px 40px rgba(0,0,0,0.06);
+                `;
+            } else {
+                navLinks.removeAttribute('style');
+            }
         });
     }
 
-    // ── Newsletter Form ─────────────────────────────────────────────────────
+    // ── Newsletter ──────────────────────────────────────────────────────────
     const form = document.getElementById('newsletterForm');
     if (form) {
         form.addEventListener('submit', e => {
             e.preventDefault();
+            const btn = form.querySelector('button');
             const input = form.querySelector('input');
-            const btn   = form.querySelector('button');
-            btn.textContent = '¡Listo!';
+            btn.textContent = '¡Suscrito!';
             btn.style.background = '#2d7a45';
             input.value = '';
             setTimeout(() => {
                 btn.textContent = 'Suscribirse';
                 btn.style.background = '';
-            }, 3000);
+            }, 3500);
         });
     }
 
