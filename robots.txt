@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://shalommendieta.com/sitemap.xml
