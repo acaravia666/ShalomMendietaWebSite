@@ -1026,8 +1026,15 @@ body:not(.loading) .hero-img {
     left: 0;
     right: 0;
     height: 2px;
-    background: var(--c-fire);
+    background: var(--active-tab-color, var(--c-fire));
+    transition: background 0.3s ease;
 }
+
+/* Specific Tab Colors */
+.video-tab-btn.active[data-tab="sinopsis"] { --active-tab-color: var(--c-fire); }
+.video-tab-btn.active[data-tab="letra"] { --active-tab-color: var(--c-agua); }
+.video-tab-btn.active[data-tab="creditos"] { --active-tab-color: var(--c-tierra); }
+.video-tab-btn.active[data-tab="agradecimientos"] { --active-tab-color: var(--c-agua); }
 
 .video-tab-content {
     display: none;
