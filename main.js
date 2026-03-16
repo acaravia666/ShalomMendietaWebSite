@@ -112,52 +112,6 @@ class SceneManager {
         this.scene.add(this.particleMesh);
         this.objects.push(this.particleMesh);
 
-        // Add some floating organic shapes (Stacked Square Pyramids)
-        const pyramidColors = ['#1B4332', '#1E3A5F']; // Tierra Green and Agua Blue
-        
-        for(let i = 0; i < 6; i++) {
-            const stackGroup = new THREE.Group();
-            
-            // Create a small stack of 2 pyramids
-            for(let j = 0; j < 2; j++) {
-                const size = 1.2 - (j * 0.4);
-                const geo = new THREE.ConeGeometry(size, size * 1.5, 4); // 4 segments = square base
-                const mat = new THREE.MeshBasicMaterial({ 
-                    color: pyramidColors[(i + j) % pyramidColors.length],
-                    wireframe: true,
-                    transparent: true,
-                    opacity: 0.25 
-                });
-                
-                const pyramid = new THREE.Mesh(geo, mat);
-                pyramid.position.y = j * (size * 0.8);
-                stackGroup.add(pyramid);
-            }
-
-            stackGroup.position.set(
-                (Math.random() - 0.5) * 40,
-                (Math.random() - 0.5) * 30,
-                (Math.random() - 0.5) * 20
-            );
-            
-            stackGroup.rotation.set(
-                Math.random() * Math.PI,
-                Math.random() * Math.PI,
-                Math.random() * Math.PI
-            );
-            
-            // Random floating speed factor
-            stackGroup.userData = {
-                speedY: (Math.random() - 0.5) * 0.012,
-                speedX: (Math.random() - 0.5) * 0.012,
-                rotSpeed: (Math.random() - 0.5) * 0.008
-            };
-            
-            this.scene.add(stackGroup);
-            this.objects.push(stackGroup);
-        }
-
-
     }
 
     setupScrollAnimation() {
@@ -228,15 +182,7 @@ class SceneManager {
             this.particleMesh.rotation.x += (this.targetY - this.particleMesh.rotation.x) * 0.02;
         }
 
-        // Idle animation for floating objects
-        this.objects.forEach(obj => {
-            if (obj.type === 'Mesh' || obj.type === 'Group') {
-                obj.rotation.x += obj.userData.speedX || 0;
-                obj.rotation.y += obj.userData.speedY || 0;
-                obj.rotation.z += obj.userData.rotSpeed || 0;
-                obj.position.y += Math.sin(elapsedTime * (obj.userData.speedY || 0.01) * 50) * 0.01;
-            }
-        });
+        // Note: objects array now only contains the particleMesh or is managed for future organic elements
 
         
         this.renderer.render(this.scene, this.camera);
