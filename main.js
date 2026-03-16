@@ -112,37 +112,78 @@ class SceneManager {
         this.scene.add(this.particleMesh);
         this.objects.push(this.particleMesh);
 
-        // Add some floating organic shapes (Madera/Cuero abstractions)
-        const geo = new THREE.IcosahedronGeometry(1.5, 1);
-        const mat = new THREE.MeshBasicMaterial({ 
-            color: '#8B5A2B', // Reverted to wood/leather color
-            wireframe: true,
-            transparent: true,
-            opacity: 0.15 // Reverted to elegant opacity
-        });
+        // Add some floating organic shapes (Stacked Square Pyramids)
+        const pyramidColors = ['#1B4332', '#1E3A5F']; // Tierra Green and Agua Blue
+        
+        for(let i = 0; i < 6; i++) {
+            const stackGroup = new THREE.Group();
+            
+            // Create a small stack of 2 pyramids
+            for(let j = 0; j < 2; j++) {
+                const size = 1.2 - (j * 0.4);
+                const geo = new THREE.ConeGeometry(size, size * 1.5, 4); // 4 segments = square base
+                const mat = new THREE.MeshBasicMaterial({ 
+                    color: pyramidColors[(i + j) % pyramidColors.length],
+                    wireframe: true,
+                    transparent: true,
+                    opacity: 0.25 
+                });
+                
+                const pyramid = new THREE.Mesh(geo, mat);
+                pyramid.position.y = j * (size * 0.8);
+                stackGroup.add(pyramid);
+            }
 
-        for(let i = 0; i < 5; i++) {
-            const mesh = new THREE.Mesh(geo, mat);
-            mesh.position.set(
-                (Math.random() - 0.5) * 20,
-                (Math.random() - 0.5) * 20,
+            stackGroup.position.set(
+                (Math.random() - 0.5) * 40,
+                (Math.random() - 0.5) * 30,
                 (Math.random() - 0.5) * 20
             );
-            mesh.rotation.y = Math.random() * Math.PI;
+            
+            stackGroup.rotation.set(
+                Math.random() * Math.PI,
+                Math.random() * Math.PI,
+                Math.random() * Math.PI
+            );
             
             // Random floating speed factor
-            mesh.userData = {
-                speedY: (Math.random() - 0.5) * 0.02,
-                speedX: (Math.random() - 0.5) * 0.02
+            stackGroup.userData = {
+                speedY: (Math.random() - 0.5) * 0.012,
+                speedX: (Math.random() - 0.5) * 0.012,
+                rotSpeed: (Math.random() - 0.5) * 0.008
             };
             
-            this.scene.add(mesh);
-            this.objects.push(mesh);
+            this.scene.add(stackGroup);
+            this.objects.push(stackGroup);
         }
+
+
     }
 
     setupScrollAnimation() {
-        // Tie the camera or scene rotation to the scroll position
+        const isMobile = window.innerWidth <= 768;
+        
+        // Hero Image Parallax - Preserving final ultra-refined scale and position
+        gsap.to(".hero-img", {
+            y: 40 + (window.innerHeight * 0.1), // Base 40px offset + parallax movement
+            scale: isMobile ? 1.05 : 1.02,
+            xPercent: isMobile ? 0 : 25, 
+            ease: "none",
+            scrollTrigger: {
+                trigger: ".hero",
+                start: "top top",
+                end: "bottom top",
+                scrub: true
+            }
+        });
+
+
+
+
+
+
+
+        // 3D Particles Scroll Interaction
         gsap.to(this.particleMesh.rotation, {
             y: Math.PI * 2,
             ease: "none",
@@ -189,12 +230,14 @@ class SceneManager {
 
         // Idle animation for floating objects
         this.objects.forEach(obj => {
-            if (obj.type === 'Mesh') {
-                obj.rotation.x += obj.userData.speedX;
-                obj.rotation.y += obj.userData.speedY;
-                obj.position.y += Math.sin(elapsedTime * obj.userData.speedY * 50) * 0.01;
+            if (obj.type === 'Mesh' || obj.type === 'Group') {
+                obj.rotation.x += obj.userData.speedX || 0;
+                obj.rotation.y += obj.userData.speedY || 0;
+                obj.rotation.z += obj.userData.rotSpeed || 0;
+                obj.position.y += Math.sin(elapsedTime * (obj.userData.speedY || 0.01) * 50) * 0.01;
             }
         });
+
         
         this.renderer.render(this.scene, this.camera);
     }
@@ -251,40 +294,65 @@ document.addEventListener('DOMContentLoaded', () => {
     // ── Smooth Scroll ───────────────────────────────────────────────────────
     document.querySelectorAll('a[href^="#"]').forEach(link => {
         link.addEventListener('click', e => {
-            const target = document.querySelector(link.getAttribute('href'));
+            const href = link.getAttribute('href');
+            if (href === '#') return;
+            const target = document.querySelector(href);
             if (!target) return;
+
             e.preventDefault();
-            const y = target.getBoundingClientRect().top + window.scrollY - 80;
-            window.scrollTo({ top: y, behavior: 'smooth' });
+
+            // If menu is open, we need to wait for the scroll lock to be released
+            // before calculating the target's position.
+            const timeout = (navLinks && navLinks.classList.contains('active')) ? 100 : 0;
+
+            setTimeout(() => {
+                const y = target.getBoundingClientRect().top + window.scrollY - 80;
+                window.scrollTo({ top: y, behavior: 'smooth' });
+            }, timeout);
         });
     });
+
 
     // ── Mobile Menu ─────────────────────────────────────────────────────────
     const toggle  = document.getElementById('menuToggle');
     const navLinks = document.getElementById('navLinks');
-    let mobileOpen = false;
 
     if (toggle && navLinks) {
         toggle.addEventListener('click', () => {
-            mobileOpen = !mobileOpen;
-            if (mobileOpen) {
-                navLinks.style.cssText = `
-                    display: flex;
-                    flex-direction: column;
-                    position: absolute;
-                    top: 100%;
-                    left: 0; right: 0;
-                    background: var(--c-bg); /* UI/UX Needs solid bg, but var updated to transp body makes this tricky - will need fix */
-                    background: #ede8df;
-                    padding: 2rem var(--gutter);
-                    gap: 1.5rem;
-                    border-top: 1px solid rgba(0,0,0,0.07);
-                    box-shadow: 0 20px 40px rgba(0,0,0,0.06);
-                `;
+            const isActive = navLinks.classList.toggle('active');
+            toggle.classList.toggle('active');
+            document.documentElement.classList.toggle('no-scroll');
+            document.body.classList.toggle('no-scroll');
+            
+            // Aggressive scroll lock for mobile
+            if (isActive) {
+                document.body.style.top = `-${window.scrollY}px`;
+                document.body.style.position = 'fixed';
+                document.body.style.width = '100%';
             } else {
-                navLinks.removeAttribute('style');
+                const scrollY = document.body.style.top;
+                document.body.style.position = '';
+                document.body.style.top = '';
+                document.body.style.width = '';
+                window.scrollTo(0, parseInt(scrollY || '0') * -1);
             }
         });
+
+        // Close when clicking links
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                // Remove fixed body first to allow immediate scroll calculation
+                document.body.style.position = '';
+                document.body.style.top = '';
+                document.body.style.width = '';
+                document.body.classList.remove('no-scroll');
+                document.documentElement.classList.remove('no-scroll');
+                
+                navLinks.classList.remove('active');
+                toggle.classList.remove('active');
+            });
+        });
+
     }
 
     // ── Newsletter ──────────────────────────────────────────────────────────
