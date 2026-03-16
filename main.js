@@ -360,16 +360,19 @@ document.addEventListener('DOMContentLoaded', () => {
         trigueno: {
             id: 'IpIGQGSRSVc',
             sinopsis: 'Obligado a abandonar la selva en la que nació, Luciano carga en sus manos su propio corazón. Desde lo profundo de la tierra, el canto de Eloísa despierta una criatura que ayuda a Luciano a atravesar la jungla. Ya en el límite del bosque, él entierra su corazón en agradecimiento. Aunque el dolor persiste, él comprende que dejar su hogar es el primer paso hacia una nueva vida.',
-            letra: `En el mismo lugar te esperaré\nAunque te vayas hoy aquí estaré\n\nNo vayas lejos que aquí te espero\nTrigueño ven con tu pueblo\nNo vayas lejos que aquí te espero\nTrigueño ven con tu pueblo\n\nNo olvides de donde viniste\nPa' guiarte bien a dónde vas\nNo olvides del árbol sus raíces\nLa cosecha por ellas se da\n\nNo vayas lejos que aquí te espero\nTrigueño ven con tu pueblo`,
-            credits: 'Obra Sonora:\nComposición: Shalom Mendieta\nProducción: Daniel Espinosa\nArreglos: Daniel Espinosa, Andrés Cuartas\nMezcla y Máster: Javier Marín\n\nObra Visual:\nJalea Films (@jaleafilms)\nGuión y Dirección: Joaquín Proaño\nDir. Fotografía: Daniel Rosero\nCast: Shalom Mendieta, Edison Galván'
+            letra: `En el mismo lugar te esperaré\nAunque te vayas hoy aquí estaré\n\nNo vayas lejos que aquí te espero\nTrigueño ven con tu pueblo\nNo vayas lejos que aquí te espero\nTrigueño ven con tu pueblo\n\nNo olvides de donde viniste\nPa' guiarte bien a dónde vas\nNo olvides del árbol sus raíces\nLa cosecha por ellas se da\n\nNo vayas lejos que aquí te espero\nTrigueño ven con tu pueblo\nNo vayas lejos que aquí te espero\nTrigueño ven con tu pueblo\n\nNo olvides de donde viniste\nPa' guiarte bien a dónde vas\nNo olvides del árbol sus raíces\nLa cosecha por ellas se da\n\nEn el mismo lugar te esperaré\nAunque te vayas hoy aquí estaré\n\nTrigueño de brazos fuertes\nme dicen que te dicen\nCosteño no vayas lejos que en la playa\nTú naciste`,
+            agradecimientos: 'Joe Houldberg\nFabián Sempértegui\nJosué Córdova\nRamiro Alcocer\nJimmy Herrera\nJuan Simbaña (padre)\nJuan Simbaña (hijo)\n“Las Montañas” Reserva Ecoturística, Mindo, Pichincha\nCabañas “Roca Mía” Mindo, Pichincha'
         },
         enmipiel: {
             id: '3pOaQZRvLXg',
-            sinopsis: 'Encerrada en una casa deshabitada, cubierta por plástico como si fuera un mueble más, Eloísa parece suspendida en el tiempo, prisionera en su propio cuerpo. Al despertar, comienza su lucha por liberarse de una segunda piel que no le pertenece. El escape se convierte en un ritual de renacimiento doloroso.',
-            letra: `Déjame escribirte en papel\nDéjame guardar tu memoria\nTu olor sigue en mi piel\nSigue en pie nuestra historia\n\nEl miedo a perderte\nMe obliga a cantarte\n\nAhora vive en mi piel tu memoria\nSe siente en el aire\nNo es dueña de nadie\n\nSigue marcando un después tu historia`,
-            credits: 'Obra Sonora:\nProducción: Daniel Espinosa\nArreglos: Daniel Espinosa, Andrés Cuartas\nMezcla y Máster: Javier Marín\n\nObra Visual:\nDirección y guión: Joaquín Proaño\nProducción: Jalea Films\nDir. de fotografía: Daniel Rosero\nCast: Shalom Mendieta'
+            sinopsis: 'Encerrada en una casa deshabitada, cubierta por plástico como si fuera un mueble más, Eloísa parece suspendida en el tiempo, prisionera en su propio cuerpo. Al despertar, comienza su lucha por liberarse de una segunda piel que no le pertenece.\nCada intento de Eloísa por zafarse del velo que la envuelve, la aleja de la casa que la mantiene prisionera. El escape se convierte en un ritual de renacimiento doloroso, donde la sangre se mezcla con el plástico.',
+            letra: `Déjame escribirte en papel\nDéjame guardar tu memoria\nTu olor sigue en mi piel\nSigue en pie nuestra historia\n\nEl miedo a perderte\nMe obliga a cantarte\n\nAhora vive en mi piel tu memoria\nSe siente en el aire\nNo es dueña de nadie\n\nSigue marcando un después tu historia\nEl silencio se rompe al escuchar tu nombre\n\nAhora vive en mi piel tu memoria\nSe siente en el aire\nNo es dueña de nadie\n\nSigue marcando un después tu historia\n\nUn recuerdo que olvidaré\nEl eterno adiós de tu boca\nY aunque tatuada esté mi piel\nEl olvido me sabe a gloria\n\nEl miedo a perderte\nMe obliga a cantarte\n\nEl miedo a perderme\nMe obliga a cantarme\n\nAhora vive en mi piel tu memoria\nSe siente en el aire\nNo es dueña de nadie\n\nSigue marcando un después tu historia\nEl silencio se rompe al escuchar tu nombre\n\nAhora vive en mi piel tu memoria\nSe siente en el aire\nNo es dueña de nadie\n\nSigue marcando un después tu historia\nEl silencio me rompe.`,
+            agradecimientos: 'Joe Houlberg\nFabian Sempértegui\nJimmy Herrera\nAdrián Cevallos\nCruz'
         }
+
     };
+
+
 
 
     const videoCards = document.querySelectorAll('.video-side-card');
@@ -398,8 +401,9 @@ document.addEventListener('DOMContentLoaded', () => {
         // Update tab contents
         document.getElementById('tab-sinopsis').querySelector('p').textContent = data.sinopsis;
         document.getElementById('tab-letra').querySelector('p').textContent = data.letra;
-        document.getElementById('tab-credits').querySelector('p').textContent = data.credits;
+        document.getElementById('tab-agradecimientos').querySelector('p').textContent = data.agradecimientos;
     };
+
 
 
     videoCards.forEach(card => {
@@ -411,16 +415,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
     tabBtns.forEach(btn => {
         btn.addEventListener('click', () => {
-            const tabName = btn.dataset.tab;
+            const targetTab = btn.dataset.tab;
             
-            // Switch tabs
+            // Switch button state
             tabBtns.forEach(b => b.classList.toggle('active', b === btn));
+            
+            // Switch content state
             tabContents.forEach(content => {
-                const isActive = content.id === `tab-${tabName == 'credits' ? 'credits' : tabName}`;
+                const isActive = content.id === `tab-${targetTab}`;
                 content.classList.toggle('active', isActive);
             });
         });
     });
+
 
     // Initialize with default video content
     updateGallery('trigueno', true);
