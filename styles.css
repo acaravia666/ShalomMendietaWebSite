@@ -393,18 +393,36 @@ blockquote::before {
     transition: filter var(--time-slow);
 }
 
+
 .nav-logo {
     height: 54px;
     /* Reduced for a more minimal, professional look */
     width: auto;
     object-fit: contain;
+    transition: all var(--time-slow) var(--ease);
 }
 
 
 .main-nav.scrolled .nav-logo {
-    filter: invert(1) brightness(0.2);
-    /* Make logo dark when nav is scrolled to light background */
+    /* Color cycling animation using brand colors (Fuego, Tierra, Agua) */
+    animation: logoColorCycle 8s infinite ease-in-out;
+    background-color: var(--c-fire); /* Initial color */
+    
+    /* Using the white logo as a mask to apply the cyclic color */
+    -webkit-mask: url('assets/logo-white.png') center / contain no-repeat;
+    mask: url('assets/logo-white.png') center / contain no-repeat;
+    
+    /* Hide original image source to show masked background instead */
+    object-position: -9999px;
+    width: 120px; /* Force width when object-position is moved */
 }
+
+@keyframes logoColorCycle {
+    0%, 100% { background-color: var(--c-fire); }
+    33% { background-color: #1B4332; } /* Tierra Green (Refined) */
+    66% { background-color: #1E3A5F; } /* Agua Blue (Refined) */
+}
+
 
 .nav-links {
     display: flex;
