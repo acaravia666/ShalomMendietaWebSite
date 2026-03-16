@@ -357,34 +357,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ── Video Gallery Logic ────────────────────────────────────────────────
     const videoData = {
-        ayayay: {
-            id: 'S2y3QWvIdG4',
-            sinopsis: 'En "AYAYAY", Shalom Mendieta explora el rastro de un amor que ya no está, transformando la nostalgia en un refugio habitable. Una danza entre la memoria y el presente donde el dolor se vuelve compañero y no sombra.',
-            letra: `Déjame decirte al oído\nQue el tiempo no ha pasado en vano\nQue sigo buscando el camino\nQue me lleve de vuelta a tu mano...\n\n(Ayayay, el alma me duele)\n(Ayayay, el tiempo se muere)`,
-            credits: 'Dirección: Jouseff Dager & Lesly Guerrero\nComposición: Shalom Mendieta, Andrés Cuartas, Daniel Espinosa\nProducción: Daniel Espinosa'
-        },
         trigueno: {
             id: 'IpIGQGSRSVc',
             sinopsis: 'Obligado a abandonar la selva en la que nació, Luciano carga en sus manos su propio corazón. Desde lo profundo de la tierra, el canto de Eloísa despierta una criatura que ayuda a Luciano a atravesar la jungla. Ya en el límite del bosque, él entierra su corazón en agradecimiento. Aunque el dolor persiste, él comprende que dejar su hogar es el primer paso hacia una nueva vida.',
-            letra: `En el mismo lugar te esperaré\nAunque te vayas hoy aquí estaré\n\nNo vayas lejos que aquí te espero\nTrigueño ven con tu pueblo\n\nNo olvides de donde viniste\nPa' guiarte bien a dónde vas\nNo olvides del árbol sus raíces\nLa cosecha por ellas se da`,
-            credits: 'Obra Sonora:\nComposición: Shalom Mendieta\nProducción: Daniel Espinosa\nArreglos: Daniel Espinosa, Andrés Cuartas\n\nObra Visual:\nJalea Films (@jaleafilms)\nGuión y Dirección: Joaquín Proaño\nDir. Fotografía: Daniel Rosero\nCast: Shalom Mendieta, Edison Galván'
+            letra: `En el mismo lugar te esperaré\nAunque te vayas hoy aquí estaré\n\nNo vayas lejos que aquí te espero\nTrigueño ven con tu pueblo\nNo vayas lejos que aquí te espero\nTrigueño ven con tu pueblo\n\nNo olvides de donde viniste\nPa' guiarte bien a dónde vas\nNo olvides del árbol sus raíces\nLa cosecha por ellas se da\n\nNo vayas lejos que aquí te espero\nTrigueño ven con tu pueblo`,
+            credits: 'Obra Sonora:\nComposición: Shalom Mendieta\nProducción: Daniel Espinosa\nArreglos: Daniel Espinosa, Andrés Cuartas\nMezcla y Máster: Javier Marín\n\nObra Visual:\nJalea Films (@jaleafilms)\nGuión y Dirección: Joaquín Proaño\nDir. Fotografía: Daniel Rosero\nCast: Shalom Mendieta, Edison Galván'
         },
         enmipiel: {
             id: '3pOaQZRvLXg',
             sinopsis: 'Encerrada en una casa deshabitada, cubierta por plástico como si fuera un mueble más, Eloísa parece suspendida en el tiempo, prisionera en su propio cuerpo. Al despertar, comienza su lucha por liberarse de una segunda piel que no le pertenece. El escape se convierte en un ritual de renacimiento doloroso.',
-            letra: `Déjame escribirte en papel\nDéjame guardar tu memoria\nTu olor sigue en mi piel\nSigue en pie nuestra historia\n\nEl miedo a perderte\nMe obliga a cantarte\nAhora vive en mi piel tu memoria`,
-            credits: 'Obra Sonora:\nProducción: Daniel Espinosa\nArreglos: Daniel Espinosa, Andrés Cuartas\nMezcla y Máster: Javier Marín\n\nObra Visual:\nDirección y guión: Joaquín Proaño\nProducción: Jalea Films\nDir. de fotografía: Daniel Rosero'
+            letra: `Déjame escribirte en papel\nDéjame guardar tu memoria\nTu olor sigue en mi piel\nSigue en pie nuestra historia\n\nEl miedo a perderte\nMe obliga a cantarte\n\nAhora vive en mi piel tu memoria\nSe siente en el aire\nNo es dueña de nadie\n\nSigue marcando un después tu historia`,
+            credits: 'Obra Sonora:\nProducción: Daniel Espinosa\nArreglos: Daniel Espinosa, Andrés Cuartas\nMezcla y Máster: Javier Marín\n\nObra Visual:\nDirección y guión: Joaquín Proaño\nProducción: Jalea Films\nDir. de fotografía: Daniel Rosero\nCast: Shalom Mendieta'
         }
     };
+
 
     const videoCards = document.querySelectorAll('.video-side-card');
     const iframe = document.getElementById('mainVideoIframe');
     const tabBtns = document.querySelectorAll('.video-tab-btn');
     const tabContents = document.querySelectorAll('.video-tab-content');
     
-    let currentVideo = 'ayayay';
+    let currentVideo = 'trigueno';
 
-    const updateGallery = (videoKey) => {
+    const updateGallery = (videoKey, isAutoInit = false) => {
         const data = videoData[videoKey];
         if (!data) return;
 
@@ -393,14 +388,19 @@ document.addEventListener('DOMContentLoaded', () => {
         // Update active card
         videoCards.forEach(card => card.classList.toggle('active', card.dataset.video === videoKey));
 
-        // Update Iframe
-        iframe.src = `https://www.youtube.com/embed/${data.id}?rel=0&autoplay=1`;
+        // Update Iframe (skip autoplay on auto initialization to save bandwidth/annoyance)
+        if (!isAutoInit) {
+            iframe.src = `https://www.youtube.com/embed/${data.id}?rel=0&autoplay=1`;
+        } else {
+            iframe.src = `https://www.youtube.com/embed/${data.id}?rel=0`;
+        }
 
-        // Update content for all tabs
+        // Update tab contents
         document.getElementById('tab-sinopsis').querySelector('p').textContent = data.sinopsis;
         document.getElementById('tab-letra').querySelector('p').textContent = data.letra;
         document.getElementById('tab-credits').querySelector('p').textContent = data.credits;
     };
+
 
     videoCards.forEach(card => {
         card.addEventListener('click', () => {
@@ -423,7 +423,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Initialize with default video content
-    updateGallery('ayayay');
+    updateGallery('trigueno', true);
+
 
     // ── Newsletter ──────────────────────────────────────────────────────────
 
