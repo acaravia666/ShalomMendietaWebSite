@@ -1234,15 +1234,16 @@ body:not(.loading) .hero-img {
     justify-content: space-between;
     align-items: center;
     padding-top: 1rem;
-    border-top: 1px solid rgba(0, 0, 0, 0.08);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
     margin-top: 1rem;
 }
 
 .product-name {
     font-size: 0.85rem;
     font-weight: 500;
-    color: var(--c-dark);
+    color: var(--c-bg);
 }
+
 
 .price {
     font-family: var(--f-serif);
