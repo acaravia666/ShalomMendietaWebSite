@@ -204,39 +204,67 @@
                 </div>
 
                 <div class="music-layout fade-up" style="transition-delay:0.15s">
-                    <!-- Featured video -->
-                    <div class="video-main-card">
-                        <div class="video-thumb-large" style="background-image:url('WhatsApp Image 2026-03-12 at 1.53.51 PM (2).jpeg')">
-                            <div class="video-play">
-                                <div class="play-ring">
-                                    <svg viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg>
+                    <!-- Featured video Player -->
+                    <div class="video-main-container">
+                        <div class="video-player-wrapper" id="videoPlayerWrapper">
+                            <!-- Default video (Ayayay) -->
+                            <iframe 
+                                id="mainVideoIframe"
+                                src="https://www.youtube.com/embed/S2y3QWvIdG4?rel=0" 
+                                title="YouTube video player" 
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                allowfullscreen>
+                            </iframe>
+                        </div>
+                        
+                        <!-- Video Tabs -->
+                        <div class="video-info-area">
+                            <div class="video-tabs" id="videoTabs">
+                                <button class="video-tab-btn active" data-tab="sinopsis">Sinopsis</button>
+                                <button class="video-tab-btn" data-tab="letra">Letra</button>
+                                <button class="video-tab-btn" data-tab="credits">Agradecimientos</button>
+                            </div>
+                            <div class="video-tab-content-wrapper">
+                                <div class="video-tab-content active" id="tab-sinopsis">
+                                    <p>Explora la narrativa detrás de esta obra visual.</p>
+                                </div>
+                                <div class="video-tab-content" id="tab-letra">
+                                    <p>La poesía que da vida a la melodía.</p>
+                                </div>
+                                <div class="video-tab-content" id="tab-credits">
+                                    <p>Las manos y corazones que hicieron esto posible.</p>
                                 </div>
                             </div>
                         </div>
-                        <div class="video-title-bar">
-                            <h3>Ayayay</h3>
-                            <span class="video-meta-text">Video Oficial · 2026</span>
-                        </div>
                     </div>
 
-                    <!-- Side videos -->
+                    <!-- Side videos (Playlists) -->
                     <div class="video-side">
-                        <div class="video-side-card">
-                            <div class="video-thumb-sm" style="background-image:url('WhatsApp Image 2026-03-12 at 1.53.56 PM (2).jpeg')"></div>
+                        <div class="video-side-card active" data-video="ayayay">
+                            <div class="video-thumb-sm" style="background-image:url('WhatsApp Image 2026-03-12 at 1.53.51 PM (2).jpeg')"></div>
                             <div class="video-side-info">
-                                <h4>Tranqui</h4>
-                                <p>Sesión en Vivo · 2026</p>
+                                <h4>Ayayay</h4>
+                                <p>Video Oficial · 2026</p>
                             </div>
                         </div>
-                        <div class="video-side-card">
-                            <div class="video-thumb-sm" style="background-image:url('WhatsApp Image 2026-03-12 at 1.53.50 PM.jpeg')"></div>
+                        <div class="video-side-card" data-video="trigueno">
+                            <div class="video-thumb-sm" style="background-image:url('WhatsApp Image 2026-03-12 at 1.53.57 PM.jpeg')"></div>
                             <div class="video-side-info">
-                                <h4>Madera & Cuero</h4>
-                                <p>Backstage · 2026</p>
+                                <h4>Trigueño</h4>
+                                <p>Video Oficial · 2026</p>
+                            </div>
+                        </div>
+                        <div class="video-side-card" data-video="enmipiel">
+                            <div class="video-thumb-sm" style="background-image:url('WhatsApp Image 2026-03-12 at 1.53.51 PM (1).jpeg')"></div>
+                            <div class="video-side-info">
+                                <h4>En mi piel</h4>
+                                <p>Video Oficial · 2026</p>
                             </div>
                         </div>
                     </div>
                 </div>
+
             </div>
         </section>
 
