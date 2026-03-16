@@ -1016,7 +1016,7 @@ body:not(.loading) .hero-img {
 
 .video-tab-btn.active {
     opacity: 1;
-    color: var(--c-fire);
+    color: var(--active-tab-color, var(--c-fire));
 }
 
 .video-tab-btn.active::after {
@@ -1031,10 +1031,22 @@ body:not(.loading) .hero-img {
 }
 
 /* Specific Tab Colors */
-.video-tab-btn.active[data-tab="sinopsis"] { --active-tab-color: var(--c-fire); }
-.video-tab-btn.active[data-tab="letra"] { --active-tab-color: var(--c-agua); }
-.video-tab-btn.active[data-tab="creditos"] { --active-tab-color: var(--c-tierra); }
-.video-tab-btn.active[data-tab="agradecimientos"] { --active-tab-color: var(--c-agua); }
+.video-tab-btn.active[data-tab="sinopsis"] { 
+    --active-tab-color: var(--c-fire); 
+    color: var(--c-fire);
+}
+.video-tab-btn.active[data-tab="letra"] { 
+    --active-tab-color: var(--c-agua); 
+    color: var(--c-agua);
+}
+.video-tab-btn.active[data-tab="creditos"] { 
+    --active-tab-color: var(--c-tierra); 
+    color: var(--c-tierra);
+}
+.video-tab-btn.active[data-tab="agradecimientos"] { 
+    --active-tab-color: var(--c-agua); 
+    color: var(--c-agua);
+}
 
 .video-tab-content {
     display: none;
