@@ -1022,7 +1022,33 @@ body:not(.loading) .hero-img {
 .video-tab-btn.active::after {
     content: '';
     position: absolute;
-    margin-left: 4px;
+    bottom: -1px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--c-fire);
+}
+
+.video-tab-content {
+    display: none;
+    animation: fadeIn 0.4s var(--ease);
+}
+
+.video-tab-content.active {
+    display: block;
+}
+
+.video-tab-content p {
+    color: var(--c-light);
+    white-space: pre-wrap; /* Crucial for lyrics and credits */
+    max-width: 100%;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 .video-title-bar {
