@@ -39,7 +39,6 @@ class SceneManager {
 
         // Use standard clock to avoid deprecation warnings
         this.clock = new THREE.Clock();
-        this.objects = [];
 
         this.initScene();
         this.setupScrollAnimation();
@@ -110,8 +109,6 @@ class SceneManager {
 
         this.particleMesh = new THREE.Points(particleGeometry, particleMaterial);
         this.scene.add(this.particleMesh);
-        this.objects.push(this.particleMesh);
-
     }
 
     setupScrollAnimation() {
@@ -169,8 +166,6 @@ class SceneManager {
 
     animate() {
         requestAnimationFrame(this.animate.bind(this));
-        
-        const elapsedTime = this.clock.getElapsedTime();
 
         // Mouse interaction lerping
         this.targetX = this.mouseX * 0.5;
@@ -182,9 +177,6 @@ class SceneManager {
             this.particleMesh.rotation.x += (this.targetY - this.particleMesh.rotation.x) * 0.02;
         }
 
-        // Note: objects array now only contains the particleMesh or is managed for future organic elements
-
-        
         this.renderer.render(this.scene, this.camera);
     }
 }
@@ -384,6 +376,80 @@ document.addEventListener('DOMContentLoaded', () => {
     updateGallery('trigueno', true);
 
 
+    // ── Gallery Lightbox ────────────────────────────────────────────────────
+    const lightbox         = document.getElementById('lightbox');
+    const lightboxImg      = document.getElementById('lightboxImg');
+    const lightboxDownload = document.getElementById('lightboxDownload');
+    const lightboxClose    = document.getElementById('lightboxClose');
+
+    document.querySelectorAll('.gallery-img').forEach(img => {
+        img.addEventListener('click', () => {
+            lightboxImg.src = img.src;
+            lightboxDownload.href = img.src;
+            lightbox.classList.add('active');
+            lightbox.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+        });
+    });
+
+    const closeLightbox = () => {
+        lightbox.classList.remove('active');
+        lightbox.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+    };
+
+    lightboxClose.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', e => {
+        if (e.target === lightbox) closeLightbox();
+    });
+    document.addEventListener('keydown', e => {
+        if (e.key === 'Escape') closeLightbox();
+    });
+
+    // ── Service Card Interaction ────────────────────────────────────────────
+    const serviceSingle    = document.getElementById('serviceSingle');
+    const serviceCardFront = document.getElementById('serviceCardFront');
+    const serviceCardDetail = document.getElementById('serviceCardDetail');
+    const serviceClose     = document.getElementById('serviceClose');
+
+    if (serviceCardFront && serviceSingle && serviceCardDetail) {
+        serviceCardFront.addEventListener('click', () => {
+            if (serviceSingle.classList.contains('open')) return;
+            serviceCardDetail.classList.add('is-open');
+            serviceSingle.classList.add('open');
+        });
+    }
+
+    if (serviceClose && serviceSingle && serviceCardDetail) {
+        serviceClose.addEventListener('click', (e) => {
+            e.stopPropagation();
+            serviceSingle.classList.remove('open');
+            serviceCardDetail.classList.remove('is-open');
+        });
+    }
+
+    // ── Booking Card Interaction ────────────────────────────────────────────
+    const bookingSingle     = document.getElementById('bookingSingle');
+    const bookingCardFront  = document.getElementById('bookingCardFront');
+    const bookingCardDetail = document.getElementById('bookingCardDetail');
+    const bookingClose      = document.getElementById('bookingClose');
+
+    if (bookingCardFront && bookingSingle && bookingCardDetail) {
+        bookingCardFront.addEventListener('click', () => {
+            if (bookingSingle.classList.contains('open')) return;
+            bookingCardDetail.classList.add('is-open');
+            bookingSingle.classList.add('open');
+        });
+    }
+
+    if (bookingClose && bookingSingle && bookingCardDetail) {
+        bookingClose.addEventListener('click', (e) => {
+            e.stopPropagation();
+            bookingSingle.classList.remove('open');
+            bookingCardDetail.classList.remove('is-open');
+        });
+    }
+
     // ── Newsletter ──────────────────────────────────────────────────────────
 
     const form = document.getElementById('newsletterForm');
@@ -393,11 +459,11 @@ document.addEventListener('DOMContentLoaded', () => {
             const btn = form.querySelector('button');
             const input = form.querySelector('input');
             btn.textContent = '¡Suscrito!';
-            btn.style.background = '#2d7a45';
+            btn.classList.add('btn--success');
             input.value = '';
             setTimeout(() => {
                 btn.textContent = 'Suscribirse';
-                btn.style.background = '';
+                btn.classList.remove('btn--success');
             }, 3500);
         });
     }
