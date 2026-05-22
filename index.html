@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap" rel="stylesheet">
+    <link rel="preload" as="image" href="WhatsApp%20Image%202026-03-12%20at%201.53.57%20PM.jpeg">
     <link rel="stylesheet" href="styles.css?v=5">
     
     <!-- ░ SEO & SOCIAL ░ -->
@@ -67,9 +68,9 @@
             <div class="nav-links" id="navLinks">
                 <a href="#music">Música</a>
                 <a href="#bio">Artista</a>
-                <a href="#shop">Tienda</a>
+                <a href="#shop" style="display:none">Tienda</a>
                 <a href="#press">Prensa</a>
-                <a href="#community">Comunidad</a>
+                <a href="#community" style="display:none">Comunidad</a>
             </div>
             <button class="menu-toggle" id="menuToggle" aria-label="Menú">
                 <span></span><span></span><span></span>
@@ -95,7 +96,7 @@
                 <p class="hero-sub"><span class="accent-agua">Madera</span> · <span class="accent-tierra">Cuero</span> · <span class="accent-fuego">Tierra</span> · <span class="accent-coral">Fuego</span></p>
                 <div class="hero-ctas">
                     <a href="#music" class="btn btn-ghost btn-arrow">Explorar Obra</a>
-                    <a href="presskit-shalom-mendieta.pdf" download class="btn btn-outline" style="border-color:rgba(255,255,255,.3);color:rgba(255,255,255,.7)">Press Kit</a>
+                    <a href="presskit-shalom-mendieta.pdf" download class="btn btn-outline btn-outline--dim">Press Kit</a>
                 </div>
             </div>
 
@@ -133,7 +134,7 @@
                 </p>
                 <div class="manifesto-aside fade-up" style="transition-delay:0.2s">
                     <p class="manifesto-credit">—&nbsp;Shalom Mendieta para La Revista, El Universo, marzo 2026</p>
-                    <a href="#bio" class="btn btn-outline" style="border-color:rgba(255,255,255,0.2);color:rgba(237,232,223,0.6)">Leer más</a>
+                    <a href="#bio" class="btn btn-outline btn-outline--dim">Leer más</a>
                 </div>
             </div>
         </section>
@@ -172,23 +173,43 @@
                         <div class="bio-milestones" style="margin-top:3rem">
                             <div class="milestone fade-up">
                                 <span class="milestone-year accent-agua">2019</span>
-                                <span class="milestone-text">Lanza su primera canción</span>
+                                <span class="milestone-text">Lanza su primera producción musical</span>
                             </div>
                             <div class="milestone fade-up" style="transition-delay:.1s">
                                 <span class="milestone-year accent-tierra">2019</span>
-                                <span class="milestone-text">Canta con Amigos Invisibles</span>
+                                <span class="milestone-text">Comparte escenario con Amigos Invisibles y participa en el festival Wankabeats</span>
+                            </div>
+                            <div class="milestone fade-up" style="transition-delay:.15s">
+                                <span class="milestone-year accent-agua">2022</span>
+                                <span class="milestone-text">Se gradúa de licenciada en Artes Musicales y Sonoras en la UArtes del Ecuador</span>
                             </div>
                             <div class="milestone fade-up" style="transition-delay:.2s">
-                                <span class="milestone-year accent-fuego">2023</span>
-                                <span class="milestone-text">Canta con Alejandro Sanz</span>
+                                <span class="milestone-year accent-coral">2023</span>
+                                <span class="milestone-text">Comparte escenario con Alejandro Sanz en su tour mundial</span>
+                            </div>
+                            <div class="milestone fade-up" style="transition-delay:.25s">
+                                <span class="milestone-year accent-tierra">2024</span>
+                                <span class="milestone-text">Lanza su primer EP: <em>Fugaz</em></span>
                             </div>
                             <div class="milestone fade-up" style="transition-delay:.3s">
                                 <span class="milestone-year accent-agua">2025</span>
-                                <span class="milestone-text">Showcase MIM Latam</span>
+                                <span class="milestone-text">Lanza su EP: <em>Madera y Cuero</em></span>
+                            </div>
+                            <div class="milestone fade-up" style="transition-delay:.35s">
+                                <span class="milestone-year accent-agua">2025</span>
+                                <span class="milestone-text">Participa en el Showcase de MIM Latam en Ciudad de Panamá</span>
                             </div>
                             <div class="milestone fade-up" style="transition-delay:.4s">
-                                <span class="milestone-year accent-fuego">2026</span>
+                                <span class="milestone-year accent-coral">2026</span>
                                 <span class="milestone-text">Primer festival internacional: Tribal Gathering, Panamá</span>
+                            </div>
+                            <div class="milestone fade-up" style="transition-delay:.45s">
+                                <span class="milestone-year accent-coral">2026</span>
+                                <span class="milestone-text">5 meses consecutivos en el top 10 de radios nacionales con <em>Ayayay</em></span>
+                            </div>
+                            <div class="milestone fade-up" style="transition-delay:.5s">
+                                <span class="milestone-year accent-tierra">2026</span>
+                                <span class="milestone-text">Lanzará su primer álbum de larga duración (por anunciar)</span>
                             </div>
                         </div>
 
@@ -266,7 +287,7 @@
                             </div>
                         </div>
                         <div class="video-side-card" data-video="enmipiel">
-                            <div class="video-thumb-sm" style="background-image:url('WhatsApp Image 2026-03-12 at 1.53.51 PM (1).jpeg')"></div>
+                            <div class="video-thumb-sm" style="background-image:url('https://img.youtube.com/vi/3pOaQZRvLXg/hqdefault.jpg')"></div>
                             <div class="video-side-info">
                                 <h4>En mi piel</h4>
                                 <p>Video Oficial · 2026</p>
@@ -335,7 +356,7 @@
         </div>
 
         <!-- ░░░ SHOP ░░░ -->
-        <section id="shop" class="shop-section section">
+        <section id="shop" class="shop-section section" style="display:none">
             <div class="wrap">
                 <div class="shop-header fade-up">
                     <div>
@@ -450,9 +471,6 @@
                                     </a>
                                 </div>
                             </div>
-                            <div class="service-footer">
-                                <a href="mailto:diamanteguayaquil@gmail.com?subject=Solicitud%20de%20Booking%20%E2%80%94%20Shalom%20Mendieta&body=%E2%80%94%20Completa%20los%20campos%20marcados%20con%20%5B%20%5D%20y%20borra%20las%20instrucciones%20antes%20de%20enviar%20%E2%80%94%0A%0AHola%20Daniel%2C%0A%0AMe%20gustar%C3%ADa%20gestionar%20una%20presentaci%C3%B3n%20con%20Shalom%20Mendieta.%0A%0ANombre%20o%20empresa%3A%20%5BTu%20nombre%20o%20nombre%20del%20evento%5D%0APa%C3%ADs%20%2F%20Ciudad%3A%20%5BD%C3%B3nde%20es%20el%20evento%5D%0AFecha%20aproximada%3A%20%5BFecha%20o%20rango%20de%20fechas%5D%0ADescripci%C3%B3n%20del%20evento%3A%20%5BTipo%20de%20evento%2C%20festival%2C%20sala%2C%20aforo%20aproximado%5D%0A%0AQuedo%20atento%2Fa%20a%20tu%20respuesta." class="service-cta">Contactar →</a>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -462,7 +480,7 @@
         </section>
 
         <!-- ░░░ NEWSLETTER ░░░ -->
-        <section id="community" class="community-section section">
+        <section id="community" class="community-section section" style="display:none">
             <div class="community-bg-text" aria-hidden="true">S·M</div>
             <div class="wrap community-inner">
                 <div class="fade-up">
@@ -485,7 +503,7 @@
                         <span class="tag tag-fuego">Prensa</span>
                         <h2>Press Kit<br><em class="accent-tierra">Oficial</em></h2>
                         <p>Biografía oficial, fotos de alta resolución y materiales para medios disponibles para descarga.</p>
-                        <a href="https://sites.google.com/view/prensa-de-shalom-mendieta/home" target="_blank" rel="noopener" class="btn btn-outline btn-arrow">Ver Prensa Oficial →</a>
+                        <a href="https://sites.google.com/view/prensa-de-shalom-mendieta/home" target="_blank" rel="noopener" class="btn btn-fire btn-arrow"><span>Ver Prensa Oficial</span></a>
                     </div>
                     <div class="press-cards fade-up" style="transition-delay:0.15s">
                         <a href="presskit-shalom-mendieta.pdf" download class="press-card">
@@ -497,22 +515,13 @@
                                 <span>PDF · 2.6 MB</span>
                             </div>
                         </a>
-                        <a href="#" class="press-card">
-                            <div class="press-icon">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-                            </div>
-                            <div class="press-info">
-                                <strong>Fotos Oficiales</strong>
-                                <span>ZIP · Alta Resolución</span>
-                            </div>
-                        </a>
-                        <a href="mailto:hola@shalommendieta.com" class="press-card">
+                        <a href="mailto:diamanteguayaquil@gmail.com?subject=Solicitud%20de%20Prensa%20%E2%80%94%20Shalom%20Mendieta&body=%E2%80%94%20Completa%20los%20campos%20marcados%20con%20%5B%20%5D%20y%20borra%20las%20instrucciones%20antes%20de%20enviar%20%E2%80%94%0A%0AHola%20Daniel%2C%0A%0ASoy%20%5BTu%20nombre%20o%20nombre%20del%20medio%5D%20y%20me%20gustar%C3%ADa%20solicitar%20informaci%C3%B3n%20de%20prensa%20sobre%20Shalom%20Mendieta.%0A%0AMedio%20%2F%20Plataforma%3A%20%5BNombre%20del%20medio%2C%20revista%2C%20podcast%2C%20etc.%5D%0ATipo%20de%20cobertura%3A%20%5BEntrevista%2C%20rese%C3%B1a%2C%20nota%2C%20otro%5D%0AFecha%20estimada%20de%20publicaci%C3%B3n%3A%20%5BFecha%20o%20rango%5D%0ADescripci%C3%B3n%20de%20la%20solicitud%3A%20%5BDetalla%20lo%20que%20necesitas%5D%0A%0AQuedo%20atento%2Fa%20a%20tu%20respuesta." class="press-card">
                             <div class="press-icon">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 8V16a2 2 0 01-2 2H5a2 2 0 01-2-2V8m18 0l-9 6-9-6m18 0a2 2 0 00-2-2H5a2 2 0 00-2 2"/></svg>
                             </div>
                             <div class="press-info">
                                 <strong>Contacto Directo</strong>
-                                <span>hola@shalommendieta.com</span>
+                                <span>Daniel Merchán · Diamante Agencia</span>
                             </div>
                         </a>
                     </div>
@@ -534,7 +543,7 @@
                 <div class="footer-links">
                     <a href="#music">Música</a>
                     <a href="#bio">Artista</a>
-                    <a href="#shop">Tienda</a>
+                    <a href="#shop" style="display:none">Tienda</a>
                     <a href="#services">Servicios</a>
                     <a href="#press">Prensa</a>
                 </div>

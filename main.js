@@ -48,6 +48,7 @@ class SceneManager {
         this.mouseY = 0;
         this.targetX = 0;
         this.targetY = 0;
+        this._animate = this.animate.bind(this);
 
         document.addEventListener('mousemove', (event) => {
             // Normalize mouse coordinates from -1 to 1
@@ -57,9 +58,9 @@ class SceneManager {
 
         // Handle Resize
         window.addEventListener('resize', this.onWindowResize.bind(this), false);
-        
+
         // Start Render Loop
-        this.animate();
+        requestAnimationFrame(this._animate);
     }
 
     initScene() {
@@ -165,7 +166,7 @@ class SceneManager {
     }
 
     animate() {
-        requestAnimationFrame(this.animate.bind(this));
+        requestAnimationFrame(this._animate);
 
         // Mouse interaction lerping
         this.targetX = this.mouseX * 0.5;
@@ -340,10 +341,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // Update tab contents
-        document.getElementById('tab-sinopsis').querySelector('p').textContent = data.sinopsis;
-        document.getElementById('tab-letra').querySelector('p').textContent = data.letra;
-        document.getElementById('tab-agradecimientos').querySelector('p').textContent = data.agradecimientos;
-        document.getElementById('tab-creditos').querySelector('p').textContent = data.creditos;
+        ['sinopsis', 'letra', 'agradecimientos', 'creditos'].forEach(key => {
+            document.getElementById(`tab-${key}`).querySelector('p').textContent = data[key];
+        });
     };
 
 
@@ -406,49 +406,31 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e.key === 'Escape') closeLightbox();
     });
 
-    // ── Service Card Interaction ────────────────────────────────────────────
-    const serviceSingle    = document.getElementById('serviceSingle');
-    const serviceCardFront = document.getElementById('serviceCardFront');
-    const serviceCardDetail = document.getElementById('serviceCardDetail');
-    const serviceClose     = document.getElementById('serviceClose');
+    // ── Expand Card Interaction (shared by service & booking cards) ─────────
+    const setupExpandCard = (wrapperId, frontId, detailId, closeId) => {
+        const wrapper = document.getElementById(wrapperId);
+        const front   = document.getElementById(frontId);
+        const detail  = document.getElementById(detailId);
+        const close   = document.getElementById(closeId);
+        if (!wrapper || !front || !detail) return;
 
-    if (serviceCardFront && serviceSingle && serviceCardDetail) {
-        serviceCardFront.addEventListener('click', () => {
-            if (serviceSingle.classList.contains('open')) return;
-            serviceCardDetail.classList.add('is-open');
-            serviceSingle.classList.add('open');
+        front.addEventListener('click', () => {
+            if (wrapper.classList.contains('open')) return;
+            detail.classList.add('is-open');
+            wrapper.classList.add('open');
         });
-    }
 
-    if (serviceClose && serviceSingle && serviceCardDetail) {
-        serviceClose.addEventListener('click', (e) => {
-            e.stopPropagation();
-            serviceSingle.classList.remove('open');
-            serviceCardDetail.classList.remove('is-open');
-        });
-    }
+        if (close) {
+            close.addEventListener('click', (e) => {
+                e.stopPropagation();
+                wrapper.classList.remove('open');
+                detail.classList.remove('is-open');
+            });
+        }
+    };
 
-    // ── Booking Card Interaction ────────────────────────────────────────────
-    const bookingSingle     = document.getElementById('bookingSingle');
-    const bookingCardFront  = document.getElementById('bookingCardFront');
-    const bookingCardDetail = document.getElementById('bookingCardDetail');
-    const bookingClose      = document.getElementById('bookingClose');
-
-    if (bookingCardFront && bookingSingle && bookingCardDetail) {
-        bookingCardFront.addEventListener('click', () => {
-            if (bookingSingle.classList.contains('open')) return;
-            bookingCardDetail.classList.add('is-open');
-            bookingSingle.classList.add('open');
-        });
-    }
-
-    if (bookingClose && bookingSingle && bookingCardDetail) {
-        bookingClose.addEventListener('click', (e) => {
-            e.stopPropagation();
-            bookingSingle.classList.remove('open');
-            bookingCardDetail.classList.remove('is-open');
-        });
-    }
+    setupExpandCard('serviceSingle', 'serviceCardFront', 'serviceCardDetail', 'serviceClose');
+    setupExpandCard('bookingSingle', 'bookingCardFront', 'bookingCardDetail', 'bookingClose');
 
     // ── Newsletter ──────────────────────────────────────────────────────────
 

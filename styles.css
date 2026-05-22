@@ -282,6 +282,11 @@ blockquote::before {
     border-color: rgba(255, 255, 255, 0.7);
 }
 
+.btn-outline--dim {
+    border-color: rgba(255, 255, 255, 0.2);
+    color: rgba(237, 232, 223, 0.6);
+}
+
 .btn-arrow::after {
     content: ' →';
 }
@@ -491,7 +496,8 @@ blockquote::before {
 }
 
 html.no-scroll,
-body.no-scroll {
+body.no-scroll,
+.no-scroll {
     overflow: hidden !important;
     height: 100vh;
 }
@@ -697,10 +703,6 @@ body:not(.loading) .hero-img {
 .accent-coral,
 .hero-sub .accent-coral {
     color: #E8433A !important;
-}
-
-.no-scroll {
-    overflow: hidden !important;
 }
 
 .hero-ctas {
@@ -963,6 +965,10 @@ body:not(.loading) .hero-img {
     line-height: 1.5;
 }
 
+.milestone-text em {
+    color: #E8433A;
+}
+
 /* ─── MUSIC SECTION LAYOUT ───────────────────────────────────────────────── */
 .music-headline {
     display: flex;
@@ -1188,6 +1194,7 @@ body:not(.loading) .hero-img {
     gap: 3px;
     width: max-content;
     animation: strip 80s linear infinite;
+    will-change: transform;
 }
 
 .strip-track img {
@@ -2125,18 +2132,6 @@ body:not(.loading) .hero-img {
 
 .em-fuego {
     font-style: italic;
-    color: var(--c-fire) !important;
-}
-
-.tag-tierra {
-    color: var(--c-tierra) !important;
-}
-
-.tag-agua {
-    color: var(--c-agua) !important;
-}
-
-.tag-fuego {
     color: var(--c-fire) !important;
 }
 
